@@ -120,40 +120,40 @@
 			Array.prototype.slice.call(lists).forEach(function(list) {
 				array.push(list.offsetHeight);	
 			})
-			// switch (type)
-			// {
-			// 	case 'bubble-sort':
-			// 		break;
-			// 	case 'selection-sort':
-			// 		break;
-			// 	case 'quick-sort':
-			// 		break;
+			switch (type)
+			{
+				case 'bubble-sort':
+					break;
+				case 'selection-sort':
+					for (let i = 0; i <= lists.length - 1; i++) {
+						for (let j = i + 1; j <= lists.length; j++) {
+							let arr = [];
+							arr.push(array[i] > array[j]);
+							arr.push(i);
+							arr.push(j);
+							yield arr;
+						};
+					};
+					break;
+				case 'quick-sort':
+					break;
 
-			// }
-			for (let i = 0; i < lists.length - 1; i++) {
-				for (let j = i + 1; j < lists.length; j++) {
-					let arr = [];
-					arr.push(array[i] > array[j]);
-					arr.push(i);
-					arr.push(j);
-					yield arr;
-				};
-			};
-			return;
+			}
+			
 		}
 
 		let sort_result = sort();
 
 		function swap() {
-			console.log(sort_result.next().done);
 			if (sort_result.next().done) {
 				return;
-			} else {				
-				// if (sort_result.next().value[0]) {
-				// 	// console.log(sort_result.next().value[1]);
-				// 	// animation(sort_result.next().value[1],sort_result.next().value[2]);
-				// 	swap();
-				// };
+			} else {
+				var result = sort_result.next()	
+				if (result.value[0]) {
+					console.log(result.value[1],result.value[2]);
+					animation(result.value[1],result.value[2]);
+					swap();
+				};
 				swap();
 			}
 		}
@@ -163,7 +163,7 @@
 		function animation(start,end) {
 			let lists = document.querySelectorAll('.lists');
 			lists = Array.prototype.slice.call(lists);
-			console.log(lists[start],lists[end]);
+			// console.log(lists[start],lists[end]);
 		}
 	</script>
 </body>
