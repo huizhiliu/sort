@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sort</title>
+</head>
+<style>
+	body{
+		text-align: center;
+	}
+	.wrapper{
+		width:500px;
+		margin:0 auto;
+		display: flex;
+		align-items:flex-end;
+	}
+	.list{
+		width: 5px;
+		float:left;
+		background: green;
+		margin-right:3px;
+	}
+	button{
+		margin-top: 40px;
+	}
+</style>
+<body>
+    <div class="wrapper">
+        <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+    	<div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+	    <div class="list"></div>
+    </div>
+    <button class="bubble-sort">冒泡</button>
+    <button class="selection-sort">选择</button>
+    <button class="quick-sort">快排</button>
+	<script src='lib/index.js'></script>
+	<script>
+		(function() {
+			let lists = document.querySelectorAll('.list');
+			Array.prototype.slice.call(lists).forEach(function(list) {
+				list.style.height = Math.random()*200 + 'px';
+			})
+
+		})()
+
+		let buttons = document.querySelectorAll('button');
+		Array.prototype.slice.call(buttons).forEach(function(button) {
+			button.addEventListener('click',function(){
+				sort(this.className);
+			},false)
+		})
+
+		function* sort(type) {
+			let array = [];
+			let lists = document.querySelectorAll('.list');
+			Array.prototype.slice.call(lists).forEach(function(list) {
+				array.push(list.offsetHeight);	
+			})
+			// switch (type)
+			// {
+			// 	case 'bubble-sort':
+			// 		break;
+			// 	case 'selection-sort':
+			// 		break;
+			// 	case 'quick-sort':
+			// 		break;
+
+			// }
+			for (let i = 0; i < lists.length - 1; i++) {
+				for (let j = i + 1; j < lists.length; j++) {
+					let arr = [];
+					arr.push(array[i] > array[j]);
+					arr.push(i);
+					arr.push(j);
+					yield arr;
+				};
+			};
+			return;
+		}
+
+		let sort_result = sort();
+
+		function swap() {
+			console.log(sort_result.next().done);
+			if (sort_result.next().done) {
+				return;
+			} else {				
+				// if (sort_result.next().value[0]) {
+				// 	// console.log(sort_result.next().value[1]);
+				// 	// animation(sort_result.next().value[1],sort_result.next().value[2]);
+				// 	swap();
+				// };
+				swap();
+			}
+		}
+
+		swap();
+
+		function animation(start,end) {
+			let lists = document.querySelectorAll('.lists');
+			lists = Array.prototype.slice.call(lists);
+			console.log(lists[start],lists[end]);
+		}
+	</script>
+</body>
+</html>
